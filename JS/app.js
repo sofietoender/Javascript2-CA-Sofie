@@ -1,4 +1,3 @@
-import { API_KEY, BASE_URL } from "./constants/api.js";
 import { registerHandler } from "./events/auth/registerHandler.js";
 
 function router() {
@@ -21,16 +20,3 @@ function router() {
 }
 
 router();
-
-
-// async function getAPIkey() {
-//     const response = await fetch(BASE_URL + API_KEY);
-//     if(response.ok) {
-//         return await response.json()
-//     }
-
-//     console.error(await response.json())
-//     throw new Error("Could not register api key");
-// }
-
-// getAPIkey().then(console.log);

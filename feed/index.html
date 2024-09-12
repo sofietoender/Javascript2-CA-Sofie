@@ -5,9 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 		<script src="https://cdn.tailwindcss.com"></script>
+		<script type="module" src="app.js"></script>
 	</head>
-	<body>
-		<div class="antialiased bg-gray-50 dark:bg-gray-900">
+	<body class="bg-gray-50 dark:bg-gray-900">
+		<div class="antialiased bg-gray-50 dark:bg-gray-900 flex">
 			<nav
 				class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50"
 			>
@@ -49,7 +50,7 @@
 						</button>
 						<a href="posts.html" class="flex items-center justify-between mr-4">
 							<img
-								src="Fjern bakgrunn-prosjekt.png"
+								src="/images/Fjern bakgrunn-prosjekt.png"
 								class="mr-3 h-8 rounded-full bg-blue-500 dark:bg-white"
 								alt=""
 							/>
@@ -466,7 +467,7 @@
 									<div class="text-sm text-gray-900 dark:text-white">Inbox</div>
 								</a>
 								<a
-									href="#"
+									href="profile.html"
 									class="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
 								>
 									<svg
@@ -780,7 +781,7 @@
 					<ul class="space-y-2">
 						<li>
 							<a
-								href="posts.html"
+								href="/feed/index.html"
 								class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
 							>
 								<svg
@@ -798,7 +799,7 @@
 						</li>
 						<li>
 							<a
-								href="#"
+								href="/profile/index.html"
 								class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
 							>
 								<svg
@@ -851,7 +852,7 @@
 				</div>
 			</aside>
 
-			<main class="p-4 md:ml-64 h-auto pt-20">
+			<main class="p-4 pt-20 mx-auto">
 				<div class="container mx-auto p-4">
 					<!-- Create Post Button -->
 					<div class="flex justify-center mb-4">
@@ -873,7 +874,7 @@
 								<div class="flex justify-between p-4">
 									<img
 										class="bg-red-600 w-12 rounded-full h-12"
-										src="logo social.png"
+										src="/images/logo social.png"
 										alt=""
 									/>
 									<div class="ml-3 text-gray-400 dark:text-white-200">
@@ -935,9 +936,9 @@
 							</div>
 
 							<div>
-								<img src="test-img.jpg" alt="" />
+								<img src="/images/test-img.jpg" alt="" />
 							</div>
-							<div class="flex border-b p-2">
+							<div class="flex p-2">
 								<div class="flex m-2">
 									<svg
 										class="h-5 w-5 text-gray-400"
@@ -977,6 +978,75 @@
 					</div>
 				</div>
 			</main>
+
+			<div
+				class="fixed hidden lg:block top-0 right-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-l border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+			>
+				<div
+					class="w-full max-w-md p-4 bg-white shadow sm:p-8 dark:bg-gray-800"
+				>
+					<div class="flex items-center justify-between mb-4">
+						<h5
+							class="text-xl font-bold leading-none text-gray-900 dark:text-white"
+						>
+							Followers
+						</h5>
+					</div>
+					<div class="flow-root">
+						<ul
+							role="list"
+							class="divide-y divide-gray-200 dark:divide-gray-700"
+						>
+							<li class="py-3 sm:py-4">
+								<div class="flex items-center">
+									<div class="flex-shrink-0">
+										<img
+											class="w-8 h-8 rounded-full"
+											src="/images/logo social.png"
+											alt="Bonnie image"
+										/>
+									</div>
+									<div class="flex-1 min-w-0 ms-4">
+										<p
+											class="text-sm font-medium text-gray-900 truncate dark:text-white"
+										>
+											Bonnie Green
+										</p>
+										<p
+											class="text-sm text-gray-500 truncate dark:text-gray-400"
+										>
+											email@windster.com
+										</p>
+									</div>
+								</div>
+							</li>
+							<li class="py-3 sm:py-4">
+								<div class="flex items-center">
+									<div class="flex-shrink-0">
+										<img
+											class="w-8 h-8 rounded-full"
+											src="/images/logo social.png"
+											alt="Bonnie image"
+										/>
+									</div>
+									<div class="flex-1 min-w-0 ms-4">
+										<p
+											class="text-sm font-medium text-gray-900 truncate dark:text-white"
+										>
+											Bonnie Green
+										</p>
+										<p
+											class="text-sm text-gray-500 truncate dark:text-gray-400"
+										>
+											email@windster.com
+										</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 
 			<!-- Modal for Creating New Post -->
 			<div
