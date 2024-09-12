@@ -1,78 +1,86 @@
 
+// // Define the API URL
+// const url = "https://v2.api.noroff.dev/auth/login";
 
-// import { API_BASE,API_AUTH} from "../../constants/api";
-
-// export async function login(email,password) {
-    
-
-//     const response = await fetch(API_BASE + API_AUTH, {
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         method:"POST",
-//         body: JSON.stringify({ email, password })
-//         });
-
-//         if (response.ok) {
-//             const { accessToken, ...profile } = (await response.json()).data;
-//             save("token", accessToken);
-//             save("profile", profile);
-//             return profile;
-//         }
-
-//         throw new Error("could not login the account");
+// // Define the body payload with the email and password
+// const data = {
+//   email: "123123123test123123123@noroff.no",
+//   password: "fdsfsdfsd"
 // };
 
+// // Create an async function to make the POST request
+// async function login() {
+//   try {
+//     // Make the POST request
+//     const response = await fetch(url, {
+//       method: 'POST', // Specify the request method
+//       headers: {
+//         'Content-Type': 'application/json', // Ensure the server knows we're sending JSON
+//       },
+//       body: JSON.stringify(data) // Convert the data object to a JSON string
+//     });
 
-// export async function onAuth(event) {
-//     event.preventDefault();
-//     const email = event.target.email.value;
-//     const password = event.target.password.value;
-
-//     if(event.submitter.dataset.auth === "login") {
-//         await login(email,password);
-//     } 
+//     // Check if the response is OK (status code 200-299)
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
 //     }
 
+//     // Parse the JSON response body
+//     const responseData = await response.json();
+//     console.log('Success:', responseData); // Log the response data
 
-import { BASE_URL, API_AUTH } from "../../constants/api";
+//   } catch (error) {
+//     console.error('Error:', error); // Log any errors that occur
+//   }
+// }
 
-export async function login(email, password) {
-    const response = await fetch(BASE_URL + API_AUTH, {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        method: "POST",
-        body: JSON.stringify({ email, password })
-    });
+// // Call the login function
+// login();
 
-    if (response.ok) {
-        const { accessToken, ...profile } = (await response.json()).data;
-        save("token", accessToken);
-        save("profile", profile);
-        return profile;
-    }
 
-    throw new Error("could not login the account");
-}
+// Define the API URL
+const url = "https://v2.api.noroff.dev/auth/login";
 
-export async function onAuth(event) {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+// Get the form element
+const form = document.getElementById('loginForm');
 
-    if (event.submitter.dataset.auth === "login") {
-        try {
-            await login(email, password);
-            alert("Login successful!");
-        } catch (error) {
-            alert("Login failed: " + error.message);
+// Add an event listener to the form
+form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the form values
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('pass').value;
+
+    // Define the body payload with the form values
+    const data = {
+        email: email,
+        password: password
+    };
+
+    try {
+        // Make the POST request
+        const response = await fetch(url, {
+            method: 'POST', // Specify the request method
+            headers: {
+                'Content-Type': 'application/json', // Ensure the server knows we're sending JSON
+            },
+            body: JSON.stringify(data) // Convert the data object to a JSON string
+        });
+
+        // Check if the response is OK (status code 200-299)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
+
+        // Parse the JSON response body
+        const responseData = await response.json();
+        console.log('Success:', responseData); // Log the response data
+
+        // Optionally, handle successful login (e.g., redirect or show a message)
+
+    } catch (error) {
+        console.error('Error:', error); // Log any errors that occur
     }
-}
+});
 
-export function setAuthListener () {
-    document.forms.auth.addEventListener("submit, onAuth");
-}
-
-setAuthListener();
