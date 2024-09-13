@@ -1,43 +1,3 @@
-
-// // Define the API URL
-// const url = "https://v2.api.noroff.dev/auth/login";
-
-// // Define the body payload with the email and password
-// const data = {
-//   email: "123123123test123123123@noroff.no",
-//   password: "fdsfsdfsd"
-// };
-
-// // Create an async function to make the POST request
-// async function login() {
-//   try {
-//     // Make the POST request
-//     const response = await fetch(url, {
-//       method: 'POST', // Specify the request method
-//       headers: {
-//         'Content-Type': 'application/json', // Ensure the server knows we're sending JSON
-//       },
-//       body: JSON.stringify(data) // Convert the data object to a JSON string
-//     });
-
-//     // Check if the response is OK (status code 200-299)
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-
-//     // Parse the JSON response body
-//     const responseData = await response.json();
-//     console.log('Success:', responseData); // Log the response data
-
-//   } catch (error) {
-//     console.error('Error:', error); // Log any errors that occur
-//   }
-// }
-
-// // Call the login function
-// login();
-
-
 // Define the API URL
 const url = "https://v2.api.noroff.dev/auth/login";
 
@@ -71,6 +31,7 @@ form.addEventListener('submit', async (event) => {
         // Check if the response is OK (status code 200-299)
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
+            
         }
 
         // Parse the JSON response body
