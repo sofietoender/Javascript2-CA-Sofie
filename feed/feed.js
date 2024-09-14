@@ -1,10 +1,7 @@
+import { postsUrl,apiKey,accessToken, searchUrl } from "../JS/constants/api.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('feed.js loaded');
-
-    const accessToken = localStorage.getItem('accessToken');
-    const apiKey = 'dae6ccc5-f86c-464a-b15b-c74239c9d85f'; // Your API key
-    const feedUrl = "https://v2.api.noroff.dev/social/posts"; // The endpoint for posts
-    const searchUrl = "https://v2.api.noroff.dev/social/posts/search"; // The endpoint for search
 
     if (!accessToken) {
         console.error('No access token found.');
@@ -24,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchPosts(query = '') {
         try {
-            const url = query ? `${searchUrl}?q=${encodeURIComponent(query)}` : feedUrl;
+            const url = query ? `${searchUrl}?q=${encodeURIComponent(query)}` : postsUrl;
             const response = await fetch(url, options);
             if (!response.ok) {
                 throw new Error(`Fetch failed with status: ${response.status}`);
@@ -176,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mediaAlt = document.getElementById('postImageAlt').value;
 
         try {
-            const response = await fetch(feedUrl, {
+            const response = await fetch(postsUrl, {
                 method: 'POST',
                 headers: {
                     ...options.headers,

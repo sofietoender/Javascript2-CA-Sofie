@@ -1,9 +1,9 @@
-import { BASE_URL, API_KEY } from "../../constants/api";
+import { BASE_URL, API_KEY_URL } from "../../constants/api";
 
 
 
 async function getAPIkey() {
-        const response = await fetch(BASE_URL + API_KEY,
+        const response = await fetch(BASE_URL + API_KEY_URL,
             
         );
         if(response.ok) {
