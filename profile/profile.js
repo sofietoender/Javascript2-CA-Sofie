@@ -1,4 +1,5 @@
-import { accessToken, apiKey, postsUrl, searchUrl, profileName, profileUrl } from "../JS/constants/api.js";
+import { accessToken, apiKey, postsUrl, searchUrl, profileName, profileUrl, profilePostsUrl } from "../JS/constants/api.js";
+import { PostCard } from "./ui/PostCard.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('profile.js loaded');
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchPosts(query = '') {
         try {
-            const url = query ? `${searchUrl}?q=${encodeURIComponent(query)}` : postsUrl;
+            const url = query ? `${searchUrl}?q=${encodeURIComponent(query)}` : profilePostsUrl;
             const response = await fetch(url, options);
             if (!response.ok) {
                 throw new Error(`Fetch failed with status: ${response.status}`);
@@ -91,72 +92,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const authorName = post.author?.name || 'Anonymous';
             const authorEmail = post.author?.email ? post.author.email.split('@')[0] : 'username';
-            const authorAvatar = post.author?.avatar?.url || '/images/default-avatar.png';
+            const authorAvatar = post.author?.avatar?.url || '/images/logo social.png';
             const avatarAlt = post.author?.avatar?.alt || 'User avatar';
 
             const likesCount = post.reactions && post.reactions.length > 0 ? post.reactions[0].count : 0;
             const commentsCount = post._count && post._count.comments !== undefined ? post._count.comments : 0;
 
-            const postElement = document.createElement('div');
-            postElement.classList.add('w-full', 'max-w-sm', 'bg-white', 'border', 'border-gray-200', 'rounded-lg', 'shadow', 'dark:bg-gray-800', 'dark:border-gray-700', 'mb-14');
-            postElement.dataset.id = post.id; // Add the post ID to the element
+            const postTitle = post.title;
+           const postBody = post.body
+           const postMediaUrl = post.media.url;
+           const postMediaAlt = post.media.alt;
 
-            postElement.innerHTML = `
-                <div class="flex justify-between border-b border-gray-200">
-                    <div class="flex items-center p-4">
-                        <img class="w-12 h-12 rounded-full" src="${authorAvatar}" alt="${avatarAlt}" />
-                        <div class="ml-3 text-gray-400 dark:text-gray-200">
-                            <p class="font-bold">${authorName}</p>
-                            <p>@${authorEmail}</p>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <button
-                            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg p-2 dropdown-button"
-                        >
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"></path>
-                            </svg>
-                        </button>
-                        <!-- Dropdown Menu -->
-                        <div
-                            class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 dropdown-menu"
-                        >
-                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white edit-post">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white delete-post">Delete</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <h2 class="text-l font-semibold">${post.title}</h2>
-                    <p class="mt-2 text-xs">${post.body}</p>
-                </div>
-                <div>
-                    <img src="${post.media.url}" alt="${post.media.alt || 'Post image'}" class="w-full max-h-64 object-cover" />
-                </div>
-                <div class="flex p-2">
-                    <div class="flex m-2">
-                        <svg class="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
-                        <p class="text-gray-700 flex items-center text-sm ml-1">${likesCount} Likes</p>
-                    </div>
-                    <div class="flex m-2">
-                        <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M6 14h12m2-7V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v2m16 2h2v10h-2M2 12h2v10H2V12z"/>
-                        </svg>
-                        <p class="text-gray-700 flex items-center text-sm ml-1">${commentsCount} Comments</p>
-                    </div>
-                </div>
-            `;
+           const postId = post.id;
 
+            const postElement = PostCard(authorName,authorEmail,authorAvatar,avatarAlt, likesCount,commentsCount,postTitle, postBody, postMediaUrl,postMediaAlt,postId)
+            
             postContainer.appendChild(postElement);
+
 
             // Add event listeners for dropdown buttons
             const dropdownButtons = postElement.querySelectorAll('.dropdown-button');
@@ -167,16 +119,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+            console.log(dropdownButtons)
+
             // Add event listeners for dropdown menu options
             const editButtons = postElement.querySelectorAll('.edit-post');
             const deleteButtons = postElement.querySelectorAll('.delete-post');
 
+            const editModal = document.getElementById("editPostModal")
+
             editButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // Add your edit logic here
+                    editModal.classList.remove('hidden');
                     console.log('Edit post');
                 });
             });
+
+      
 
             deleteButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -186,6 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+
 
     function updateProfileCard(profile) {
         const profileCard = document.getElementById('profile-card');

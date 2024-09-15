@@ -6,7 +6,7 @@
 		<title>Document</title>
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script type="module" src="app.js"></script>
-		<script src="/profile/profile.js"></script>
+		<script type="module" src="./profile.js"></script>
 	</head>
 	<body class="bg-gray-50 dark:bg-gray-900">
 		<div class="antialiased bg-gray-50 dark:bg-gray-900 flex">
@@ -619,6 +619,52 @@
 					</div>
 				</div>
 			</main>
+
+			<!-- Modal for edit post -->
+
+			<div
+				id="editPostModal"
+				class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden"
+			>
+				<div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+					<h2 class="text-xl font-semibold mb-4">Edit Post</h2>
+					<!-- Details for a post that are not editable -->
+					<div id="postDetail"></div>
+
+					<!-- Details for a post that are editable -->
+					<form id="editPostForm" class="space-y-4">
+						<div>
+							<label
+								for="postBody"
+								class="block text-sm font-medium text-gray-700"
+								>Body</label
+							>
+							<textarea
+								id="postBody"
+								name="body"
+								class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+								required
+							></textarea>
+						</div>
+
+						<div class="flex justify-end">
+							<button
+								type="button"
+								id="closeModalBtn"
+								class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-400"
+							>
+								Cancel
+							</button>
+							<button
+								type="submit"
+								class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 ml-2"
+							>
+								Update Post
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
 
 			<div
 				class="fixed hidden lg:block top-0 right-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-l border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
