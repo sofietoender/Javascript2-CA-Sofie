@@ -8,6 +8,7 @@ export function registerHandler() {
 };
 
 async function submitForm(event) {
+    console.log("heiq");
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
