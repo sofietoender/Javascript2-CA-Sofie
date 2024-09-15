@@ -1,6 +1,9 @@
 import { API_AUTH_URL } from '../../constants/api.js'
 const form = document.getElementById('loginForm');
 
+
+
+
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
