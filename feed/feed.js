@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!accessToken) {
         console.error('No access token found.');
         alert('No access token found, please log in.');
-        window.location.href = 'index.html'; // Redirect to login if no token is found
+        window.location.href = 'index.html'; 
         return;
     }
 
     const options = {
         headers: {
-            Authorization: `Bearer ${accessToken}`, // Use the access token
-            "X-Noroff-API-Key": apiKey // Include the API key
+            Authorization: `Bearer ${accessToken}`, 
+            "X-Noroff-API-Key": apiKey 
         }
     };
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             console.log('Posts fetched successfully:', data);
             allPosts = data.data;
-            sortAndDisplayPosts(); // Sort and display posts after fetching
+            sortAndDisplayPosts();
 
         } catch (error) {
             console.error('Error fetching posts:', error);
@@ -44,22 +44,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const dateB = new Date(b.created);
 
             if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
-                // Handle cases where dates are invalid
+                
                 return 0;
             }
 
             if (sortOption === 'newest') {
-                return dateB - dateA; // Newer dates come first
+                return dateB - dateA; 
             } else if (sortOption === 'oldest') {
-                return dateA - dateB; // Older dates come first
+                return dateA - dateB; 
             }
-            return 0; // No sorting if no valid option is provided
+            return 0; 
         });
     }
 
     function displayPosts(posts) {
         const postContainer = document.getElementById('postContainer');
-        postContainer.innerHTML = ''; // Clear any existing posts
+        postContainer.innerHTML = '';
 
 
         posts.forEach(post => {
@@ -96,18 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle search form submission
     const searchForm = document.getElementById('searchForm');
     searchForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault(); // 
 
         const searchInput = document.getElementById('topbar-search');
         const query = searchInput.value.trim();
 
-        fetchPosts(query); // Fetch posts with the search query
+        fetchPosts(query); 
     });
 
     // Handle sorting change
     const sortSelect = document.getElementById('sortSelect');
     sortSelect.addEventListener('change', () => {
-        sortAndDisplayPosts(); // Sort and display posts based on selected option
+        sortAndDisplayPosts(); 
     });
 
     // Modal handling
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle form submission
     createPostForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
 
         const title = document.getElementById('postTitle').value;
         const body = document.getElementById('postBody').value;
@@ -160,9 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             console.log('Post created successfully');
-            fetchPosts(); // Refresh posts
-            createPostModal.classList.add('hidden'); // Hide modal
-            createPostForm.reset(); // Reset form
+            fetchPosts(); 
+            createPostModal.classList.add('hidden'); 
+            createPostForm.reset(); 
 
         } catch (error) {
             console.error('Error creating post:', error);
