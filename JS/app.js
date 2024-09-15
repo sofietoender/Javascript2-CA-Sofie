@@ -12,7 +12,7 @@ function router() {
             break;
     
         case "/register/":
-        case "/register/index.html":
+        case "../register/index.html":
             registerHandler();
             break;
     
