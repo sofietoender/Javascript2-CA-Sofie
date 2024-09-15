@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!accessToken) {
         console.error('No access token found.');
         alert('No access token found, please log in.');
-        window.location.href = 'index.html'; // Redirect to login if no token is found
+        window.location.href = 'index.html'; 
         return;
     }
 
     const options = {
         headers: {
-            Authorization: `Bearer ${accessToken}`, // Use the access token
-            "X-Noroff-API-Key": apiKey // Include the API key
+            Authorization: `Bearer ${accessToken}`, 
+            "X-Noroff-API-Key": apiKey 
         }
     };
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             console.log('Posts fetched successfully:', data);
             allPosts = data.data;
-            displayPosts(allPosts); // Display posts without sorting
+            displayPosts(allPosts); 
 
         } catch (error) {
             console.error('Error fetching posts:', error);
@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`${postsUrl}/${postId}`, {
                 method: 'DELETE',
                 headers: {
-                    Authorization: `Bearer ${accessToken}`, // Use the access token
-                    "X-Noroff-API-Key": apiKey // Include the API key
+                    Authorization: `Bearer ${accessToken}`, 
+                    "X-Noroff-API-Key": apiKey 
                 }
             });
             if (!response.ok) {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Post container element not found.');
             return;
         }
-        postContainer.innerHTML = ''; // Clear any existing posts
+        postContainer.innerHTML = ''; 
 
         posts.forEach(post => {
             if (!post.media || !post.media.url) {
@@ -168,13 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function sortPosts(order) {
-        console.log('Sorting posts:', order); // Debugging line
+       
         if (order === 'newest') {
             allPosts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         } else if (order === 'oldest') {
             allPosts.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
         }
-        console.log('Sorted posts:', allPosts); // Debugging line
+       
         displayPosts(allPosts);
     }
 
@@ -182,7 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sortSelect = document.getElementById('sortSelectUnique');
     sortSelect.addEventListener('change', (event) => {
         const selectedValue = event.target.value;
-        console.log('Selected sort option:', selectedValue); // Debugging line
         sortPosts(selectedValue);
     });
 

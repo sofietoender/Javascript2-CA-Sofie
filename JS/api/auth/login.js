@@ -24,17 +24,17 @@ form.addEventListener('submit', async (event) => {
         const responseData = await response.json();
         console.log('Login Response Data:', responseData);
 
-        // Extract the accessToken and name from responseData.data
+        
         const accessToken = responseData.data.accessToken;
         const name = responseData.data.name;
 
         if (accessToken && name) {
             // Save the token and name to localStorage
             localStorage.setItem('accessToken', accessToken);
-            localStorage.setItem('username', name); // Save the user's name
+            localStorage.setItem('username', name); 
             console.log('Access token and username saved:', accessToken, name);
 
-            // Redirect to the feed page
+            
             window.location.href = 'feed/index.html';
         } else {
             console.error('Access token or name is missing in the response.');
