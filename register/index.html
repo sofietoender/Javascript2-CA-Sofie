@@ -9,16 +9,14 @@
 	</head>
 	<body>
 		<section class="bg-gray-50 dark:bg-gray-900">
-			<div
-				class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
-			>
+			<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto">
 				<a
 					href="#"
 					class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
 				>
 					<img
 						class="w-9 h-9 mr-2 rounded-full"
-						src="/images/logo social.png"
+						src="../images/logo social.png"
 						alt="logo"
 					/>
 					Social
@@ -32,7 +30,11 @@
 						>
 							Create an account
 						</h1>
-						<form class="space-y-4 md:space-y-6" action="#" id="registerForm">
+						<form
+							class="space-y-4 md:space-y-6"
+							id="registerForm"
+							method="POST"
+						>
 							<div id="message"></div>
 							<div>
 								<label
@@ -148,7 +150,7 @@
 							<p class="text-sm font-light text-gray-500 dark:text-gray-400">
 								Already have an account?
 								<a
-									href="/index.html"
+									href="../index.html"
 									class="font-medium text-primary-600 hover:underline dark:text-primary-500"
 									>Login here</a
 								>
