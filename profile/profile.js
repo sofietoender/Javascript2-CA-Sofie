@@ -167,6 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
+/**
+ * Sorts post based on oldest or newest
+ * @param {string} order The order to sort the posts
+ */
+    
     function sortPosts(order) {
        
         if (order === 'newest') {
